@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}{{ video.title }} - 仿B站{% endblock %}
+
+{% block content %}
+<h1>{{ video.title }}</h1>
+<p>UP主：{{ video.uploader.username }} | 播放：{{ video.view_count }}</p>
+<video width="800" controls>
+    <source src="{{ video.video_file.url }}" type="video/mp4">
+    您的浏览器不支持视频播放。
+</video>
+<p>{{ video.description }}</p>
+<br>
+<a href="{% url 'index' %}">返回首页</a>
+{% endblock %}

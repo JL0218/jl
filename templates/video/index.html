@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}首页 - 仿B站{% endblock %}
+
+{% block content %}
+<h1>推荐视频</h1>
+<div class="video-list">
+    {% for video in videos %}
+    <div class="video-card">
+        <a href="{% url 'video_detail' video.pk %}">
+            <img src="{{ video.cover.url }}" alt="{{ video.title }}">
+            <h3>{{ video.title }}</h3>
+            <p>{{ video.uploader.username }} · {{ video.view_count }} 播放</p>
+        </a>
+    </div>
+    {% empty %}
+    <p>暂无视频，快去<a href="{% url 'upload_video' %}">投稿</a>吧！</p>
+    {% endfor %}
+</div>
+{% endblock %}
